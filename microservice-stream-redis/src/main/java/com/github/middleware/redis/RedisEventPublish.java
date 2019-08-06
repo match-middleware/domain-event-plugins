@@ -27,7 +27,7 @@ public class RedisEventPublish extends EventPublish {
         MessageType type = channelProvider.getType();
         redisTemplate.execute(new RedisCmd.Cmd() {
             public void cmd(Jedis jedis) {
-                log.info("publish {}:{}", getEventName(), toJsonString(getMessageData()));
+                log.info("publish {}: {}:{}",type, getEventName(), toJsonString(getMessageData()));
                 if (type == MessageType.P2P) {
                     Long lpush = jedis.lpush(getEventName(), toJsonString(getMessageData()));
                     log.info("lpush {}", lpush);

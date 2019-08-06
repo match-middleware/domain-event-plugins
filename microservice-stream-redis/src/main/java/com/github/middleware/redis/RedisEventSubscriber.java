@@ -3,6 +3,7 @@ package com.github.middleware.redis;
 import com.github.middleware.event.EventSubscriber;
 import com.github.middleware.message.MessageData;
 import com.github.middleware.message.MessageType;
+import com.github.middleware.utils.JDKTypeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
@@ -33,6 +34,7 @@ public class RedisEventSubscriber extends EventSubscriber {
 
     public void start(MessageType type) {
         running = true;
+        log.info("RedisEventSubscriber.start() => {},{}",type.name(),eventHandler.getEventName());
         if (type == MessageType.P2M) {
             new Thread(new Runnable() {
                 public void run() {
@@ -44,7 +46,8 @@ public class RedisEventSubscriber extends EventSubscriber {
                                 public void onMessage(String channel, String message) {
                                     log.info("subscribe:{}:{}", channel, message);
                                     MessageData messageData = (MessageData) toObject(message, MessageData.class);
-                                    Object data = toObject(String.valueOf(messageData.getData()), getEventDataObjectClass());
+                                    Class<?> eventDataObjectClass = JDKTypeUtils.getEventDataObjectClass(eventHandler.getClass());
+                                    Object data = toObject(String.valueOf(messageData.getData()), eventDataObjectClass);
                                     eventHandler.handler((Serializable) data);
                                 }
                             }, getEventHandler().getEventName());
@@ -62,8 +65,10 @@ public class RedisEventSubscriber extends EventSubscriber {
                                 public void cmd(Jedis jedis) {
                                     Optional<String> optional = Optional.ofNullable(jedis.rpop(getEventHandler().getEventName()));
                                     if (optional.isPresent()) {
+                                        log.info("rpop:{}:{}",getEventHandler().getEventName(), optional.get());
                                         MessageData messageData = (MessageData) toObject(optional.get(), MessageData.class);
-                                        Object data = toObject(String.valueOf(messageData.getData()), getEventDataObjectClass());
+                                        Class<?> eventDataObjectClass = JDKTypeUtils.getEventDataObjectClass(eventHandler.getClass());
+                                        Object data = toObject(String.valueOf(messageData.getData()), eventDataObjectClass);
                                         eventHandler.handler((Serializable) data);
                                     }
                                 }
@@ -81,5 +86,6 @@ public class RedisEventSubscriber extends EventSubscriber {
 
     public void stop() {
         running = false;
+        log.info("RedisEventSubscriber.stop() => {}",eventHandler.getEventName());
     }
 }
