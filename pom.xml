@@ -9,6 +9,7 @@
     <version>1.0.0</version>
     <modules>
         <module>microservice-stream-redis</module>
+        <module>microservice-stream-springboot-starter</module>
     </modules>
     <packaging>pom</packaging>
 
