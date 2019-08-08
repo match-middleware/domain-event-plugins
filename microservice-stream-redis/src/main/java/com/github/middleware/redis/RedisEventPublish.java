@@ -28,10 +28,10 @@ public class RedisEventPublish extends EventPublish {
         redisTemplate.execute(new RedisCmd.Cmd() {
             public void cmd(Jedis jedis) {
                 log.info("publish {}: {}:{}",type, getEventName(), toJsonString(getMessageData()));
-                if (type == MessageType.P2P) {
+                if (type == MessageType.PRODUCERS_AND_CONSUMERS) {
                     Long lpush = jedis.lpush(getEventName(), toJsonString(getMessageData()));
                     log.info("lpush {}", lpush);
-                } else if (type == MessageType.P2M) {
+                } else if (type == MessageType.PUBLISH_SUBSCRIBE) {
                     Long publish = jedis.publish(getEventName(), toJsonString(getMessageData()));
                     log.info("publish {}", publish);
                 }

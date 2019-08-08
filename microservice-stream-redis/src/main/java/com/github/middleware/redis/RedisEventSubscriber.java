@@ -35,7 +35,7 @@ public class RedisEventSubscriber extends EventSubscriber {
     public void start(MessageType type) {
         running = true;
         log.info("RedisEventSubscriber.start() => {},{}",type.name(),eventHandler.getEventName());
-        if (type == MessageType.P2M) {
+        if (type == MessageType.PUBLISH_SUBSCRIBE) {
             new Thread(new Runnable() {
                 public void run() {
                     RedisCmd redisTemplate = redisChannelProvider.getRedisCmd();
@@ -55,7 +55,7 @@ public class RedisEventSubscriber extends EventSubscriber {
                     });
                 }
             }).start();
-        } else if (type == MessageType.P2P) {
+        } else if (type == MessageType.PRODUCERS_AND_CONSUMERS) {
             new Thread(new Runnable() {
                 public void run() {
                     RedisCmd redisCmd = redisChannelProvider.getRedisCmd();

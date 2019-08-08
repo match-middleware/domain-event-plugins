@@ -10,10 +10,13 @@
     <modules>
         <module>microservice-stream-redis</module>
         <module>microservice-stream-springboot-starter</module>
+        <module>microservice-stream-amqp</module>
+        <module>microservice-stream-activemq</module>
     </modules>
     <packaging>pom</packaging>
 
-    <properties> 
+    <properties>
+        <microservice-stream-version>1.0.0</microservice-stream-version>
     </properties>
  
     <dependencies>  
