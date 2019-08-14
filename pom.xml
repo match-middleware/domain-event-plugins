@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.middleware.plugin</groupId>
-    <artifactId>event-stream-plugin-parent</artifactId>
+    <artifactId>event-stream-plugin</artifactId>
     <version>1.0.0</version>
     <modules>
-        <module>microservice-stream-redis</module>
-        <module>microservice-stream-springboot-starter</module>
-        <module>microservice-stream-activemq</module>
+        <module>event-stream-redis</module>
+        <module>event-stream-springboot-starter</module>
+        <module>event-stream-activemq</module>
     </modules>
     <packaging>pom</packaging>
 

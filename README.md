@@ -1,1 +1,1 @@
-# microservice-stream-plugin
+# event-stream-plugin
