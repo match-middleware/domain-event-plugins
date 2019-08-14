@@ -1,6 +1,6 @@
 package com.github.middleware.redis;
 
-import com.github.middleware.Stream;
+import com.github.middleware.EventStream;
 import com.github.middleware.channel.ChannelProvider;
 import com.github.middleware.config.EventConfigItem;
 import com.github.middleware.config.EventConfigManager;
@@ -34,19 +34,19 @@ public class RedisChannelProviderTest {
 
         channelProvider.init();
 
-        Stream.register(new  A());
-        Stream.register(new  A());
-        Stream.register(new  A());
-        Stream.register(new  B());
-        Stream.register(new  B());
-        Stream.register(new  B());
+        EventStream.register(new  A());
+        EventStream.register(new  A());
+        EventStream.register(new  A());
+        EventStream.register(new  B());
+        EventStream.register(new  B());
+        EventStream.register(new  B());
 
         String eventName = "";
         Scanner scanner  = new Scanner(System.in);
         while (!(eventName = scanner.next()).equals("exit")){
             try {
                 String[] split = eventName.split(":");
-                Stream.publish(split[0], split[1]);
+                EventStream.publish(split[0], split[1]);
             }catch (Exception e){
 
             }

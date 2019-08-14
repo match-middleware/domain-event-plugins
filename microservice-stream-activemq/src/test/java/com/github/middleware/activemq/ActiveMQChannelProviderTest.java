@@ -1,12 +1,10 @@
 package com.github.middleware.activemq;
 
 
-import com.github.middleware.Stream;
-import com.github.middleware.annotation.SubscribeType;
+import com.github.middleware.EventStream;
 import com.github.middleware.channel.ChannelProvider;
 import com.github.middleware.config.EventConfigItem;
 import com.github.middleware.config.EventConfigManager;
-import com.github.middleware.utils.SubscribeTypeUtils;
 
 import java.util.Properties;
 import java.util.Scanner;
@@ -33,9 +31,9 @@ public class ActiveMQChannelProviderTest {
 
         channelProvider.init();
 
-        Stream.register(new  OrderManagerSystem());
-        Stream.register(new  ProductStoreMaagerSystem());
-        Stream.register(new  EmailMaagerSystem());
+        EventStream.register(new  OrderManagerSystem());
+        EventStream.register(new  ProductStoreMaagerSystem());
+        EventStream.register(new  EmailMaagerSystem());
 
         String input = "";
         Scanner scanner  = new Scanner(System.in);
@@ -43,7 +41,7 @@ public class ActiveMQChannelProviderTest {
             try {
                 String eventName = input.substring(0, input.indexOf(":"));
                 String body = input.substring(input.indexOf(":")+1);
-                Stream.publish(eventName, new PaidEvent(body));
+                EventStream.publish(eventName, new PaidEvent(body));
             }catch (Exception e){
 
             }

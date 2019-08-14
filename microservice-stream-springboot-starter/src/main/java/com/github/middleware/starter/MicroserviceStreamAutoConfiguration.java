@@ -1,6 +1,6 @@
 package com.github.middleware.starter;
 
-import com.github.middleware.Stream;
+import com.github.middleware.EventStream;
 import com.github.middleware.config.EventConfigItem;
 import com.github.middleware.config.EventConfigManager;
 import com.github.middleware.event.EventHandler;
@@ -10,8 +10,6 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Configuration;
-
-import javax.annotation.PostConstruct;
 
 /**
  * @Author zhangchao
@@ -31,7 +29,7 @@ public class MicroserviceStreamAutoConfiguration implements ApplicationContextAw
 
         applicationContext.getBeansOfType(EventHandler.class).values().stream().forEach(v->{
             logger.info("event register ->{}",v.getEventName());
-            Stream.register(v);
+            EventStream.register(v);
         });
     }
 }

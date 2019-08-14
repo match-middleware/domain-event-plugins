@@ -3,15 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>microservice-stream-plugin-parent</artifactId>
         <groupId>com.github.middleware.plugin</groupId>
+        <artifactId>event-stream-plugin-parent</artifactId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>microservice-stream-activemq</artifactId>
-
-
+    <artifactId>event-stream-activemq</artifactId>
 
     <dependencies>
         <dependency>
@@ -21,8 +19,8 @@
         </dependency>
         <dependency>
             <groupId>com.github.middleware</groupId>
-            <artifactId>microservice-stream</artifactId>
-            <version>${microservice-stream-version}</version>
+            <artifactId>event-stream</artifactId>
+            <version>${event-stream-version}</version>
         </dependency>
     </dependencies>
 
