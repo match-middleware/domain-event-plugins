@@ -14,6 +14,19 @@
     </modules>
     <packaging>pom</packaging>
 
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/match-middleware/event-stream-plugin</url>
+        <connection>https://github.com/match-middleware/event-stream-plugin.git</connection>
+    </scm>
     <properties>
         <event-stream-version>1.0.0</event-stream-version>
     </properties>
@@ -31,5 +44,52 @@
             <version>1.7.26</version>
         </dependency> 
     </dependencies>
- 
+    <distributionManagement>
+        <repository>
+            <id>maven-rpeo</id>
+            <url>file:D:/sources/maven-rpeo/</url>
+        </repository>
+    </distributionManagement>
+
+    <developers>
+        <developer>
+            <name>zhangchao</name>
+            <id>zhangchao</id>
+            <email>jaguar_zc@sina.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <!-- 要将源码放上去，需要加入这个插件 -->
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
