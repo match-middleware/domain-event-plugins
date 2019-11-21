@@ -5,13 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.middleware.plugin</groupId>
-    <artifactId>event-stream-plugin</artifactId>
+    <artifactId>domain-event-plugins</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
     <modules>
-        <module>event-stream-redis</module>
-        <module>event-stream-springboot-starter</module>
-        <module>event-stream-activemq</module>
+        <module>domain-event-redis</module>
+        <module>domain-event-springboot-starter</module>
+        <module>domain-event-activemq</module>
+        <module>domain-event-kafka</module>
     </modules>
 
 
@@ -30,7 +31,7 @@
         <connection>https://github.com/match-middleware/event-stream-plugin.git</connection>
     </scm>
     <properties>
-        <event-stream-version>1.0.0</event-stream-version>
+        <domain-event-version>1.0.0</domain-event-version>
     </properties>
  
     <dependencies>  
